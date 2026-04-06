@@ -145,6 +145,130 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    // Add this logic to your existing Chat send function
+function getAIResponse(userInput) {
+    const input = userInput.toLowerCase();
+    
+    // Menu-Aware Logic
+    if (input.includes("recommend") || input.includes("best") || input.includes("coffee")) {
+        return `You have to try our <strong>Black Latte</strong>. It's the signature Krāv experience. <br>
+                <button onclick="suggestItem('black-latte')" class="ai-link">View Details</button>`;
+    }
+    
+    if (input.includes("hungry") || input.includes("food") || input.includes("pasta")) {
+        return `Our <strong>Truffle Pasta</strong> is a crowd favorite. Very aromatic and rich. <br>
+                <button onclick="suggestItem('truffle-pasta')" class="ai-link">View Details</button>`;
+    }
+
+    if (input.includes("sweet") || input.includes("cold")) {
+        return `If you want something refreshing, the <strong>Spanish Latte</strong> over ice is perfect. <br>
+                <button onclick="suggestItem('spanish-latte')" class="ai-link">View Details</button>`;
+    }
+
+    return "I'm not sure, but our Baristas at the Tanauan branch can whip up something special for you! Try asking about our signatures.";
+}
+
+// Update the sendBtn listener to use this function
+sendBtn.addEventListener('click', () => {
+    const text = userInput.value.trim();
+    if (text === "") return;
+
+    // ... (User message display code) ...
+
+    setTimeout(() => {
+        const botDiv = document.createElement('div');
+        botDiv.className = 'msg bot';
+        botDiv.innerHTML = getAIResponse(text);
+        messagesContainer.appendChild(botDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }, 800);
+});
+// Add this inside your DOMContentLoaded listener
+
+const searchInput = document.getElementById('menu-search');
+
+searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    
+    // Filter the menuData based on the search query
+    const filteredResults = menuData.filter(item => 
+        item.name.toLowerCase().includes(query) || 
+        item.cat.toLowerCase().includes(query)
+    );
+
+    // Re-render the grid with only the filtered items
+    renderFilteredMenu(filteredResults);
+});
+
+function renderFilteredMenu(items) {
+    const grid = document.getElementById('menu-grid');
+    grid.innerHTML = '';
+    
+    if (items.length === 0) {
+        grid.innerHTML = '<p class="no-results">No Krāv signatures found. Try searching for "Latte" or "Pasta".</p>';
+        return;
+    }
+
+    items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = `menu-card ${item.feat ? 'featured' : ''}`;
+        card.innerHTML = `
+            <img src="${item.img}" alt="${item.name}">
+            <div class="card-content">
+                <h4>${item.name}</h4>
+                <p class="price">${item.price}</p>
+            </div>
+        `;
+        // Make cards clickable to open the modal we made earlier
+        card.onclick = () => suggestItem(item.id);
+        grid.appendChild(card);
+    });
+}
+// Add inside your DOMContentLoaded listener
+
+// 1. Scroll Progress Logic
+window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById("scroll-progress").style.width = scrolled + "%";
+});
+
+// 2. Notification Toast System
+function showNotification(message) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    
+    container.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+// 3. Reveal Elements on Scroll (Intersection Observer)
+const revealOptions = { threshold: 0.1 };
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, revealOptions);
+
+// Target all sections and cards for a reveal effect
+document.querySelectorAll('section, .menu-card').forEach(el => {
+    el.classList.add('reveal-on-scroll'); // Add this class to your CSS for opacity:0; transition:1s;
+    revealObserver.observe(el);
+});
+
+// Trigger a toast when a promo is clicked (for testing)
+document.querySelector('.promo-wrapper').onclick = () => {
+    showNotification("Promo Code 'KRAVSTUDENT' copied to clipboard!");
+};
 
 });
 

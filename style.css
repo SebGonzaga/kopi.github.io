@@ -400,3 +400,182 @@ footer {
     .modal-image { height: 200px; }
     .modal-text { padding: 20px; }
 }
+
+/* --- Vibe Slider --- */
+.vibe-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+    scrollbar-width: none; /* Hide for Firefox */
+}
+
+.vibe-slider::-webkit-scrollbar { display: none; } /* Hide for Chrome/Safari */
+
+.vibe-card {
+    min-width: 280px;
+    height: 400px;
+    scroll-snap-align: start;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--concrete);
+}
+
+.vibe-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.vibe-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.vibe-card:hover .vibe-overlay { opacity: 1; }
+.vibe-card:hover img { transform: scale(1.1); }
+
+.vibe-overlay span {
+    color: var(--brass);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+}
+/* --- Promos --- */
+.promo-wrapper {
+    background: linear-gradient(135deg, var(--concrete) 0%, #1a1a1b 100%);
+    border: 1px solid var(--brass);
+    padding: 40px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--brass);
+}
+
+.badge {
+    background: var(--brass);
+    color: var(--charcoal);
+    padding: 4px 12px;
+    font-weight: bold;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.promo-graphic {
+    font-size: 4rem;
+    opacity: 0.2;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+/* --- Search Bar --- */
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--concrete);
+    padding: 5px 15px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    outline: none;
+    width: 200px;
+    transition: width 0.3s;
+}
+
+.search-box input:focus { width: 300px; }
+.search-box i { color: var(--brass); width: 18px; }
+
+/* --- Scroll Progress --- */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--brass);
+    z-index: 5000;
+}
+
+/* --- Hero Mouse Animation --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.6;
+}
+
+.mouse {
+    width: 20px;
+    height: 35px;
+    border: 2px solid var(--white);
+    border-radius: 20px;
+    position: relative;
+}
+
+.mouse::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--brass);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 8px;
+    border-radius: 50%;
+    animation: scroll-wheel 1.5s infinite;
+}
+
+@keyframes scroll-wheel {
+    0% { top: 8px; opacity: 1; }
+    100% { top: 20px; opacity: 0; }
+}
+
+/* --- Notification Toasts --- */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 6000;
+}
+
+.toast {
+    background: var(--concrete);
+    color: var(--white);
+    border-left: 4px solid var(--brass);
+    padding: 15px 25px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-size: 0.8rem;
+    animation: slide-in 0.3s ease;
+}
+
+@keyframes slide-in {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
