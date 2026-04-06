@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KRĀV | Tanauan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -12,6 +12,17 @@
 
     <div id="scroll-progress"></div>
     <div id="toast-container"></div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">KRĀV<span>.</span></div>
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" title="Toggle Theme">
+                    <i data-lucide="moon" id="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
     <section id="hero">
         <div class="hero-content">
@@ -22,11 +33,15 @@
                 <a href="#location" class="btn-outline">Visit Us</a>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <span>Scroll</span>
+        </div>
     </section>
 
     <section class="promo-bar">
         <div class="promo-content">
-            <span class="tag">PROMO</span>
+            <span class="tag">WEEKLY PROMO</span>
             <p><strong>Bundle:</strong> Buy 1 Get 1 on all Signature Lattes every Tuesday!</p>
         </div>
     </section>
@@ -36,8 +51,8 @@
             <div class="promo-slide active">
                 <div class="promo-text">
                     <span class="badge">Limited Offer</span>
-                    <h2>Treat: B1G1</h2>
-                    <p>Buy 1 Get 1 on all Signature Lattes for students. Just show your ID!</p>
+                    <h2>Student B1G1 Treat</h2>
+                    <p>Flash your Student ID and get Buy 1 Get 1 on all Signature Lattes. Stay fueled for those exams!</p>
                 </div>
                 <div class="promo-graphic">☕ + ☕</div>
             </div>
@@ -46,26 +61,35 @@
 
     <section id="menu" class="container">
         <div class="section-header">
-            <h2>The Menu</h2>
+            <div class="header-title">
+                <h2>The Menu</h2>
+                <p>Crafted with precision, served with passion.</p>
+            </div>
             <div class="search-box">
                 <i data-lucide="search"></i>
-                <input type="text" id="menu-search" placeholder="Search Krāv signatures...">
+                <input type="text" id="menu-search" placeholder="Search menu...">
             </div>
+        </div>
+
+        <div class="filters-container">
             <div class="filters">
-               
-                <button class="filter-btn" data-filter="signatures">Signatures</button>
+                <button class="filter-btn active" data-filter="signatures">Signatures</button>
                 <button class="filter-btn" data-filter="espresso">Espresso</button>
                 <button class="filter-btn" data-filter="non-coffee">Non-Coffee</button>
                 <button class="filter-btn" data-filter="kitchen">Kitchen</button>
             </div>
         </div>
-        <div class="bento-grid" id="menu-grid"></div>
+
+        <div class="bento-grid" id="menu-grid">
+            </div>
     </section>
 
     <section id="gallery" class="container">
         <div class="section-header">
-            <h2>Barkada Vibes</h2>
-            <p class="subtitle">Tag us @krav.tanauan</p>
+            <div>
+                <h2>Barkada Vibes</h2>
+                <p class="subtitle">Tag us @krav.tanauan</p>
+            </div>
         </div>
         <div class="vibe-slider">
             <div class="vibe-card">
@@ -87,50 +111,42 @@
         </div>
     </section>
 
-   <section id="location" class="container">
-    <div class="section-header">
-        <h2>Find Us</h2>
-    </div>
-
-    <div class="location-wrapper">
-        <div class="map-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3868.571407338318!2d121.11787807584105!3d14.090426689100084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6f07113f1355%3A0xf7f16ebee5fa9861!2sKr%C4%81v%20Cafe%20Tanauan!5e0!3m2!1sen!2sph!4v1712433000000!5m2!1sen!2sph"
-                width="100%" 
-                height="450" 
-                style="border:0; filter: grayscale(1) invert(1) contrast(1.2);" 
-                allowfullscreen 
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+    <section id="location" class="container">
+        <div class="section-header">
+            <h2>Find Us</h2>
         </div>
 
-        <div class="location-info">
-            <h4>Krāv Tanauan</h4>
-            <p>
-                057 Pres. J.P. Laurel Highway,<br>
-                Tanauan City, 4232 Batangas
-            </p>
+        <div class="location-wrapper">
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3869.860144983084!2d121.1466!3d14.0864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6f07113f1355%3A0x37f16ee655f9f891!2zS3LDonYgQ2FmZSBUYW5hdWFu!5e0!3m2!1sen!2sph!4v1712415785000!5m2!1sen!2sph"
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen 
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
 
-            <p class="hours">Open Daily: 10:00 AM – 10:00 PM</p>
-            <p class="hours-note" style="font-size: 0.8rem; color: var(--gray);">Fri & Sat: Until 12:00 AM</p>
+            <div class="location-info">
+                <h4>Krāv Tanauan</h4>
+                <p>057 Pres. J.P. Laurel Highway,<br>Tanauan City, 4232 Batangas</p>
 
-            <div class="location-actions">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Kr%C4%81v+Cafe+Tanauan" 
-                   target="_blank" 
-                   class="btn-outline">
-                    Get Directions
-                </a>
+                <p class="hours">Open Daily: 10:00 AM – 10:00 PM</p>
+                <p class="hours-note">Fri & Sat: Until 12:00 AM</p>
 
-                <a href="https://maps.google.com/?cid=17868516053303630249" 
-                   target="_blank" 
-                   class="btn-outline secondary">
-                    View on Google Maps
-                </a>
+                <div class="location-actions">
+                    <a href="https://maps.app.goo.gl/VRM_EQdvvTMRAZj6Vb5u8fc" target="_blank" class="btn-outline">
+                        Get Directions
+                    </a>
+                    <a href="https://www.google.com/maps/place/Kr%C4%81v+Cafe+Tanauan" target="_blank" class="btn-outline secondary">
+                        View on Maps
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <div id="ai-trigger"><i data-lucide="message-square"></i></div>
 
@@ -140,7 +156,7 @@
             <button id="close-chat"><i data-lucide="x"></i></button>
         </div>
         <div id="chat-messages">
-            <div class="msg bot">Hey! I'm the Krāv Barista. Looking for a caffeine fix or something heavy?</div>
+            <div class="msg bot">Hey! I'm the Krāv Barista. Looking for a caffeine fix or a heavy meal?</div>
         </div>
         <div class="chat-input-area">
             <input type="text" id="user-input" placeholder="Ask for a recommendation...">
@@ -149,7 +165,7 @@
     </div>
 
     <nav class="mobile-nav">
-        <a href="#hero" class="nav-link"><i data-lucide="home"></i><span>Home</span></a>
+        <a href="#hero" class="nav-link active"><i data-lucide="home"></i><span>Home</span></a>
         <a href="#menu" class="nav-link"><i data-lucide="coffee"></i><span>Menu</span></a>
         <a href="#location" class="nav-link"><i data-lucide="map-pin"></i><span>Locate</span></a>
         <a href="javascript:void(0)" class="nav-link" id="mobile-ai-btn"><i data-lucide="sparkles"></i><span>AI</span></a>
@@ -163,7 +179,7 @@
                 <div class="modal-text">
                     <span class="modal-label">Barista's Choice</span>
                     <h3 id="modal-name">Item Name</h3>
-                    <p id="modal-desc">Description</p>
+                    <p id="modal-desc">Description goes here.</p>
                     <span id="modal-price" class="price">₱000</span>
                     <button class="btn-primary" style="margin-top: 20px; width: 100%;">Add to Order</button>
                 </div>
@@ -173,14 +189,16 @@
 
     <footer>
         <div class="container">
+            <div class="footer-logo">KRĀV<span>.</span></div>
             <p>© 2026 KRĀV TANAUAN. All rights reserved.</p>
             <div class="social-links">
-                <i data-lucide="facebook"></i>
-                <i data-lucide="instagram"></i>
+                <a href="#"><i data-lucide="facebook"></i></a>
+                <a href="#"><i data-lucide="instagram"></i></a>
             </div>
         </div>
     </footer>
 
+    <script>lucide.createIcons();</script>
     <script src="script.js"></script>
 </body>
 </html>
