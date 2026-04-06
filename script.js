@@ -38,3 +38,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderMenu();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+    
+    // Previous Menu Logic remains here...
+
+    const trigger = document.getElementById('ai-trigger');
+    const chatWindow = document.getElementById('chat-window');
+    const closeBtn = document.getElementById('close-chat');
+    const sendBtn = document.getElementById('send-btn');
+    const userInput = document.getElementById('user-input');
+    const messagesContainer = document.getElementById('chat-messages');
+
+    // Toggle Chat
+    trigger.addEventListener('click', () => {
+        chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        chatWindow.style.display = 'none';
+    });
+
+    // Handle Sending Messages
+    function sendMessage() {
+        const text = userInput.value.trim();
+        if (text === "") return;
+
+        // User Message
+        const userDiv = document.createElement('div');
+        userDiv.className = 'msg user';
+        userDiv.textContent = text;
+        messagesContainer.appendChild(userDiv);
+
+        userInput.value = "";
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Mock AI Response (We'll integrate the actual API later)
+        setTimeout(() => {
+            const botDiv = document.createElement('div');
+            botDiv.className = 'msg bot';
+            botDiv.textContent = "That sounds like a vibe! I'd recommend a Black Latte if you need a boost, or our Truffle Pasta if you're hungry.";
+            messagesContainer.appendChild(botDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 800);
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+});

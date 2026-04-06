@@ -45,6 +45,39 @@
     <div id="ai-trigger">
         <i data-lucide="message-square"></i>
     </div>
+    <section id="location" class="container">
+    <div class="section-header">
+        <h2>Find Us</h2>
+    </div>
+    <div class="location-wrapper">
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3868.123456789!2d121.0890!3d14.0850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDA1JzA2LjAiTiAxMjHCsDA1JzIwLjQiRQ!5e0!3m2!1sen!2sph!4v1640000000000!5m2!1sen!2sph" 
+                width="100%" height="450" style="border:0; filter: grayscale(1) invert(1) contrast(1.2);" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+        <div class="location-info">
+            <h4>Krāv Tanauan</h4>
+            <p>Pres. J.P. Laurel Highway, <br>Tanauan City, Batangas</p>
+            <p class="hours">Open Daily: 10:00 AM - 9:00 PM</p>
+            <a href="https://maps.google.com" target="_blank" class="btn-outline">Get Directions</a>
+        </div>
+    </div>
+</section>
+
+<div id="chat-window">
+    <div class="chat-header">
+        <span>AI BARISTA</span>
+        <button id="close-chat"><i data-lucide="x"></i></button>
+    </div>
+    <div id="chat-messages">
+        <div class="msg bot">Hey! I'm the Krāv Barista. Looking for a caffeine fix or something heavy?</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="user-input" placeholder="Ask for a recommendation...">
+        <button id="send-btn"><i data-lucide="send"></i></button>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>
