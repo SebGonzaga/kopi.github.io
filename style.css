@@ -579,3 +579,19 @@ footer {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
+.filters {
+    display: flex;
+    gap: 15px; /* Consistent spacing */
+    overflow-x: auto; /* Allow horizontal scroll if needed on tiny screens */
+    padding-bottom: 10px;
+    scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar { display: none; }
+
+.filter-btn {
+    white-space: nowrap; /* Prevent text from wrapping */
+    margin-left: 0 !important; /* Remove the old margin-left */
+    font-size: 1rem;
+    padding: 5px 10px;
+}
