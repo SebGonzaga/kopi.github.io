@@ -89,3 +89,38 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') sendMessage();
     });
 });
+
+// Add this to your existing DOMContentLoaded listener
+
+const mobileAiBtn = document.getElementById('mobile-ai-btn');
+
+// Mobile AI Trigger
+if (mobileAiBtn) {
+    mobileAiBtn.addEventListener('click', () => {
+        chatWindow.style.display = 'flex';
+    });
+}
+
+// Smooth scroll active state
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+    let current = '';
+    const sections = document.querySelectorAll('section');
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Final visual touch: console log for developer
+console.log("Krāv Tanauan Online. Aesthetic: Industrial. Vibes: Active.");
