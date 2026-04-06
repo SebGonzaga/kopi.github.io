@@ -1,0 +1,165 @@
+:root {
+    --charcoal: #1A1A1B;
+    --concrete: #2D2D2D;
+    --brass: #C5A059;
+    --white: #FFFFFF;
+    --gray: #888888;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--charcoal);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* --- Hero --- */
+#hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2000');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    letter-spacing: 5px;
+}
+
+.hero-content span { color: var(--brass); }
+
+.subtitle {
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.hero-btns { margin-top: 30px; display: flex; gap: 15px; justify-content: center; }
+
+.btn-primary, .btn-outline {
+    padding: 12px 30px;
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.btn-primary { background: var(--brass); color: var(--charcoal); }
+.btn-outline { border: 1px solid var(--brass); color: var(--brass); }
+.btn-primary:hover { background: var(--white); }
+
+/* --- Promo Bar --- */
+.promo-bar {
+    background: var(--concrete);
+    padding: 20px;
+    border-top: 1px solid rgba(197, 160, 89, 0.3);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+}
+
+.promo-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.tag {
+    background: var(--brass);
+    color: var(--charcoal);
+    font-weight: bold;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 2px;
+}
+
+/* --- Menu Grid --- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 2px; }
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    margin-left: 20px;
+    letter-spacing: 1px;
+}
+
+.filter-btn.active { color: var(--brass); border-bottom: 2px solid var(--brass); }
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 350px;
+    gap: 20px;
+}
+
+.menu-card {
+    position: relative;
+    background: var(--concrete);
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.featured { grid-column: span 2; }
+
+.menu-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+.menu-card:hover img { opacity: 0.4; transform: scale(1.05); }
+
+.card-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.card-content h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; }
+.price { color: var(--brass); font-weight: bold; }
+
+/* --- AI Button --- */
+#ai-trigger {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--brass);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 768px) {
+    .featured { grid-column: span 1; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .filter-btn { margin-left: 0; margin-right: 20px; }
+}

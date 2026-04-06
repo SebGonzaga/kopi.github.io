@@ -1,234 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOIR | Crafted by Sebastian Gonzaga</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        body { font-family: 'Inter', sans-serif; cursor: default; }
-        .font-serif { font-family: 'Playfair Display', serif; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { animation: marquee 30s linear infinite; }
-        
-        /* Custom Loader Animation */
-        #loader { transition: opacity 0.5s ease-out; }
-    </style>
+    <title>KRĀV | Tanauan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-[#0f0f0f] text-stone-200" x-data="{ 
-    cart: [], 
-    showCart: false, 
-    showBooking: false,
-    orderStatus: 'Idle',
-    get total() { return this.cart.reduce((sum, item) => sum + item.price, 0) } 
-}">
+<body>
 
-    <div id="loader" class="fixed inset-0 z-[100] bg-black flex items-center justify-center">
-        <div class="text-center">
-            <div class="w-16 h-16 border-2 border-amber-700 border-t-transparent rounded-full animate-spin mb-4 mx-auto"></div>
-            <p class="text-[10px] uppercase tracking-[0.5em] text-amber-700">Brewing Excellence...</p>
-        </div>
-    </div>
-
-    <div class="bg-amber-900 text-[10px] font-bold uppercase tracking-[0.3em] py-2 overflow-hidden whitespace-nowrap border-b border-white/10">
-        <div class="animate-marquee inline-block">
-            New Seasonal Roast: Batangas Barako Gold &nbsp; • &nbsp; Free Delivery on orders above ₱500 &nbsp; • &nbsp; Curated by Sebastian Gonzaga &nbsp; • &nbsp; 
-            New Seasonal Roast: Batangas Barako Gold &nbsp; • &nbsp; Free Delivery on orders above ₱500 &nbsp; • &nbsp; Curated by Sebastian Gonzaga &nbsp; • &nbsp; 
-        </div>
-    </div>
-
-    <nav class="fixed w-full z-50 bg-black/40 backdrop-blur-md border-b border-white/5 top-8">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif font-bold text-white tracking-tighter">NOIR<span class="text-amber-700">.</span></a>
-            
-            <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-widest">
-                <a href="#about" class="hover:text-amber-600 transition">Philosophy</a>
-                <a href="#menu" class="hover:text-amber-600 transition">The Roast</a>
-                <a href="#tracker" class="hover:text-amber-600 transition">Order Status</a>
-            </div>
-
-            <div class="flex items-center space-x-8">
-                <button @click="showCart = true" class="relative group">
-                    <span class="text-[10px] font-bold uppercase tracking-widest group-hover:text-amber-600">Cart</span>
-                    <span x-text="cart.length" class="ml-2 text-amber-700 font-mono">0</span>
-                </button>
-                <button @click="showBooking = true" class="bg-white text-black px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-amber-700 hover:text-white transition-all">Book Table</button>
-            </div>
-        </div>
-    </nav>
-
-    <section class="relative h-[90vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80" 
-                 class="w-full h-full object-cover opacity-40 scale-110" alt="Roastery">
-        </div>
-        <div class="relative z-10 text-center max-w-4xl px-6">
-            <h1 class="text-7xl md:text-[10rem] font-serif mb-6 leading-[0.8] italic text-white reveal">Liquid<br>Poetry.</h1>
-            <p class="text-stone-400 text-sm md:text-lg mb-10 max-w-lg mx-auto font-light leading-relaxed reveal" style="transition-delay: 200ms">
-                A sensory journey designed for the modern connoisseur. Hand-roasted in small batches by <strong>Sebastian Gonzaga</strong>.
-            </p>
-            <div class="reveal" style="transition-delay: 400ms">
-                <a href="#menu" class="group inline-flex items-center space-x-4">
-                    <span class="w-12 h-[1px] bg-amber-700 group-hover:w-20 transition-all"></span>
-                    <span class="text-xs font-bold uppercase tracking-[0.4em]">Explore Menu</span>
-                </a>
+    <section id="hero">
+        <div class="hero-content">
+            <p class="subtitle">Artisanal Coffee & Kitchen</p>
+            <h1>KRĀV<span>.</span></h1>
+            <div class="hero-btns">
+                <a href="#menu" class="btn-primary">View Menu</a>
+                <a href="#location" class="btn-outline">Visit Us</a>
             </div>
         </div>
     </section>
 
-    <section id="tracker" class="py-20 px-6 bg-[#141414]" x-data="{ steps: ['Received', 'Grinding', 'Brewing', 'Ready'], current: 0 }">
-        <div class="max-w-4xl mx-auto glass p-10 rounded-3xl reveal">
-            <div class="flex justify-between items-center mb-12">
-                <h3 class="text-xs font-bold uppercase tracking-widest text-amber-700">Live Roastery Status</h3>
-                <span class="text-[10px] text-stone-500">Live from BGC Branch</span>
-            </div>
-            <div class="flex justify-between relative">
-                <div class="absolute top-1/2 left-0 w-full h-[1px] bg-stone-800 -z-10"></div>
-                <template x-for="(step, index) in steps">
-                    <div class="text-center">
-                        <div class="w-4 h-4 mx-auto rounded-full mb-4 border-2 transition-colors"
-                             :class="index <= current ? 'bg-amber-700 border-amber-700' : 'bg-stone-900 border-stone-700'"></div>
-                        <p class="text-[10px] uppercase font-bold tracking-widest" :class="index <= current ? 'text-white' : 'text-stone-600'" x-text="step"></p>
-                    </div>
-                </template>
-            </div>
-            <button @click="current = (current + 1) % 4" class="mt-12 text-[10px] uppercase tracking-widest border border-stone-700 px-6 py-2 hover:bg-stone-800 transition">Simulate Progress</button>
+    <section class="promo-bar">
+        <div class="promo-content">
+            <span class="tag">PROMO</span>
+            <p><strong>Barkada Bundle:</strong> Buy 1 Get 1 on all Signature Lattes every Tuesday!</p>
         </div>
     </section>
 
-    <section id="menu" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between mb-20 gap-8 items-end">
-                <h2 class="text-5xl font-serif text-white">Curated Selection</h2>
-                <p class="text-stone-500 max-w-xs text-xs uppercase leading-loose tracking-widest">Selected beans from 1,500m above sea level, roasted to perfection.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-16">
-                <div class="reveal group">
-                    <div class="relative overflow-hidden aspect-[3/4] mb-8 rounded-2xl bg-stone-900">
-                        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end">
-                            <button @click="cart.push({name: 'Midnight Espresso', price: 150})" class="w-full bg-white text-black py-4 font-bold text-[10px] uppercase tracking-widest">Add to Order</button>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-serif text-2xl">Midnight Espresso</h4>
-                        <span class="text-amber-700 font-mono">₱150</span>
-                    </div>
-                </div>
-
-                <div class="reveal group" style="transition-delay: 200ms">
-                    <div class="relative overflow-hidden aspect-[3/4] mb-8 rounded-2xl bg-stone-900">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end">
-                            <button @click="cart.push({name: 'Cloud Cold Brew', price: 190})" class="w-full bg-white text-black py-4 font-bold text-[10px] uppercase tracking-widest">Add to Order</button>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-serif text-2xl">Cloud Cold Brew</h4>
-                        <span class="text-amber-700 font-mono">₱190</span>
-                    </div>
-                </div>
-
-                <div class="reveal group" style="transition-delay: 400ms">
-                    <div class="relative overflow-hidden aspect-[3/4] mb-8 rounded-2xl bg-stone-900">
-                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end">
-                            <button @click="cart.push({name: 'Sebastian\'s Blend', price: 250})" class="w-full bg-white text-black py-4 font-bold text-[10px] uppercase tracking-widest">Add to Order</button>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-serif text-2xl">Sebastian's Blend</h4>
-                        <span class="text-amber-700 font-mono">₱250</span>
-                    </div>
-                </div>
+    <section id="menu" class="container">
+        <div class="section-header">
+            <h2>The Menu</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="coffee">Coffee</button>
+                <button class="filter-btn" data-filter="food">Food</button>
             </div>
         </div>
+
+        <div class="bento-grid" id="menu-grid">
+            </div>
     </section>
 
-    <footer class="bg-black py-32 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-20 mb-32">
-                <div>
-                    <h2 class="text-4xl font-serif text-white mb-8">Developed by<br>Sebastian Gonzaga</h2>
-                    <p class="text-stone-500 max-w-sm leading-relaxed">
-                        This digital experience was engineered for speed, responsiveness, and aesthetic precision. Designed as a tribute to the art of coffee.
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 gap-10">
-                    <div>
-                        <h5 class="text-white text-[10px] font-bold uppercase tracking-widest mb-6">Tech Stack</h5>
-                        <ul class="text-stone-500 text-xs space-y-4">
-                            <li>Tailwind CSS</li>
-                            <li>Alpine.js</li>
-                            <li>HTML5 / CSS3</li>
-                            <li>Intersection Observer</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h5 class="text-white text-[10px] font-bold uppercase tracking-widest mb-6">Connect</h5>
-                        <ul class="text-stone-500 text-xs space-y-4">
-                            <li><a href="#" class="hover:text-amber-700 transition">GitHub</a></li>
-                            <li><a href="#" class="hover:text-amber-700 transition">LinkedIn</a></li>
-                            <li><a href="#" class="hover:text-amber-700 transition">Portfolio</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-[0.3em] text-stone-600">
-                <p>&copy; 2026 NOIR ROASTERY. ALL RIGHTS RESERVED.</p>
-                <p>CRAFTED WITH PRECISION BY <span class="text-white underline underline-offset-4">SEBASTIAN GONZAGA</span></p>
-            </div>
-        </div>
-    </footer>
-
-    <div x-show="showCart" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl p-10 flex flex-col" x-transition>
-        <div class="flex justify-between items-center mb-20">
-            <h2 class="text-5xl font-serif">Your Order</h2>
-            <button @click="showCart = false" class="text-xs uppercase tracking-widest border-b border-white">Close</button>
-        </div>
-        <div class="flex-grow overflow-y-auto space-y-6">
-            <template x-for="item in cart">
-                <div class="flex justify-between border-b border-white/10 pb-4">
-                    <span class="text-xl font-serif" x-text="item.name"></span>
-                    <span class="text-amber-700 font-mono" x-text="'₱' + item.price"></span>
-                </div>
-            </template>
-            <div x-show="cart.length === 0" class="text-stone-500 text-center py-20 uppercase tracking-widest text-xs">Your tray is empty</div>
-        </div>
-        <div class="pt-10 flex justify-between items-end">
-            <div>
-                <p class="text-stone-500 text-[10px] uppercase tracking-widest mb-2">Grand Total</p>
-                <p class="text-5xl font-mono text-white" x-text="'₱' + total"></p>
-            </div>
-            <button class="bg-amber-700 text-white px-12 py-6 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all">Checkout</button>
-        </div>
+    <div id="ai-trigger">
+        <i data-lucide="message-square"></i>
     </div>
 
-    <script>
-        // Preloader Logic
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            loader.style.opacity = '0';
-            setTimeout(() => loader.style.display = 'none', 500);
-        });
-
-        // Intersection Observer for Reveal animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
