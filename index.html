@@ -96,7 +96,23 @@
     <a href="#location" class="nav-link"><i data-lucide="map-pin"></i><span>Locate</span></a>
     <a href="javascript:void(0)" class="nav-link" id="mobile-ai-btn"><i data-lucide="sparkles"></i><span>AI</span></a>
 </nav>
-
+<div id="item-modal" class="modal-overlay">
+    <div class="modal-content">
+        <button id="close-modal"><i data-lucide="x"></i></button>
+        <div class="modal-body">
+            <div class="modal-image">
+                <img id="modal-img" src="" alt="">
+            </div>
+            <div class="modal-text">
+                <span class="modal-label">Barista's Choice</span>
+                <h3 id="modal-name">Item Name</h3>
+                <p id="modal-desc">Detailed description of the item goes here.</p>
+                <span id="modal-price" class="price">₱000</span>
+                <button class="btn-primary" style="margin-top: 20px; width: 100%;">Add to Order</button>
+            </div>
+        </div>
+    </div>
+</div>
 <footer>
     <div class="container">
         <p>&copy; 2026 KRĀV TANAUAN. All rights reserved.</p>
