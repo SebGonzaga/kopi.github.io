@@ -184,6 +184,58 @@ body {
 .location-info h4 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 10px; }
 .hours { color: var(--brass); margin-bottom: 20px; font-size: 0.9rem; }
 
+/* Container for the text and buttons */
+.location-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+}
+
+.location-info h4 { 
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 2.5rem; 
+    margin-bottom: 10px; 
+    color: var(--white);
+}
+
+.hours { 
+    color: var(--brass); 
+    margin-bottom: 5px; 
+    font-size: 1rem; 
+    font-weight: bold;
+}
+
+.hours-note {
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+}
+
+/* Fix for the overlapping buttons */
+.location-actions {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to stack on small screens instead of overlapping */
+    gap: 15px; /* Creates clean space between buttons */
+    margin-top: 10px;
+}
+
+.location-actions .btn-outline {
+    flex: 1; /* Makes buttons equal width */
+    min-width: 160px; /* Prevents them from getting too skinny */
+    text-align: center;
+    padding: 12px 20px;
+    white-space: nowrap; /* Keeps text on one line */
+    display: inline-block;
+    border: 1px solid var(--brass);
+    transition: 0.3s ease;
+}
+
+.location-actions .btn-outline:hover {
+    background: var(--brass);
+    color: var(--charcoal);
+}
+
 /* --- AI Chat Window --- */
 #chat-window {
     position: fixed;
