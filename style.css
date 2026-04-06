@@ -49,16 +49,18 @@ body {
 
 /* --- Hero --- */
 #hero {
-    height: 80vh;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2000');
+    /* Added background-size to ensure the spread photo fits correctly */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                url('503deada-9252-475b-b4ea-75eacab86ca0.jfif');
     background-size: cover;
     background-position: center;
+    position: relative;
 }
-
 .hero-content h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(4rem, 10vw, 8rem);
@@ -783,13 +785,13 @@ h1, h2, h3, h4, .btn-primary, .btn-outline, .nav-link, .filter-btn {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), 
-                url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2000');
+    /* Added background-size to ensure the spread photo fits correctly */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                url('503deada-9252-475b-b4ea-75eacab86ca0.jfif');
     background-size: cover;
     background-position: center;
     position: relative;
 }
-
 .hero-content h1 {
     font-size: clamp(4rem, 12vw, 9rem);
     letter-spacing: 5px;
