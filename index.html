@@ -30,6 +30,7 @@
                 <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
                 <li class="nav-item"><a href="#location" class="nav-link">Location</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -38,6 +39,10 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
+            <div class="cart-icon" id="cartIcon">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartIconCount" class="cart-icon-count">0</span>
+</div>
         </div>
     </nav>
 
@@ -52,10 +57,18 @@
                     <a href="#chatbox" class="btn btn-secondary">Ask AI Barista</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="coffee-steam"></div>
-                <div class="coffee-cup"></div>
-            </div>
+          <div class="hero-image">
+    <div class="coffee-cup"></div>
+    <div class="coffee-steam"></div>
+    <div class="coffee-steam"></div>
+    
+    <!-- Floating coffee beans -->
+    <div class="coffee-bean"></div>
+    <div class="coffee-bean"></div>
+    <div class="coffee-bean"></div>
+    <div class="coffee-bean"></div>
+</div>
+</div>
         </div>
     </section>
 
@@ -87,134 +100,215 @@
     </section>
 
     <!-- Menu Section -->
-    <section id="menu" class="menu">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Menu</h2>
-                <p>Expanded selection of premium coffees and specialties</p>
+    <!-- Menu Section - FIXED & IMPROVED -->
+<!-- Menu Section - Updated with Add to Order & Philippine Pesos -->
+<section id="menu" class="menu">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Menu</h2>
+            <p>Premium coffees and specialties crafted with love in Tanauan</p>
+        </div>
+        
+        <div class="menu-tabs">
+            <button class="tab-btn active" data-tab="espresso">Espresso Drinks</button>
+            <button class="tab-btn" data-tab="brewed">Brewed Coffee</button>
+            <button class="tab-btn" data-tab="cold">Cold Brews</button>
+            <button class="tab-btn" data-tab="specialty">Specialty</button>
+            <button class="tab-btn" data-tab="beans">Coffee Beans</button>
+        </div>
+        
+        <div class="menu-grid">
+
+            <!-- Espresso Drinks -->
+            <div class="menu-item espresso active">
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1512568400610-42b9a8c02e93?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Classic Espresso">
+                    <h4>Classic Espresso</h4>
+                    <p>Single shot of rich, bold espresso with caramelized notes.</p>
+                    <div class="price">₱95</div>
+                    <button class="btn btn-primary add-to-order" data-name="Classic Espresso" data-price="95">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1509043759401-9f5a4f8e69e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Cappuccino">
+                    <h4>Cappuccino</h4>
+                    <p>Equal parts espresso, steamed milk, and velvety foam.</p>
+                    <div class="price">₱125</div>
+                    <button class="btn btn-primary add-to-order" data-name="Cappuccino" data-price="125">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1572448804205-745d5e3b63c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Vanilla Latte">
+                    <h4>Vanilla Latte</h4>
+                    <p>Smooth espresso with house-made vanilla syrup.</p>
+                    <div class="price">₱135</div>
+                    <button class="btn btn-primary add-to-order" data-name="Vanilla Latte" data-price="135">Add to Order</button>
+                </div>
             </div>
-            <div class="menu-tabs">
-                <button class="tab-btn active" data-tab="espresso">Espresso Drinks</button>
-                <button class="tab-btn" data-tab="brewed">Brewed Coffee</button>
-                <button class="tab-btn" data-tab="cold">Cold Brews</button>
-                <button class="tab-btn" data-tab="specialty">Specialty</button>
-                <button class="tab-btn" data-tab="beans">Coffee Beans</button>
+
+            <!-- Brewed Coffee -->
+            <div class="menu-item brewed">
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1577968897966-f97a76e486e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="House Blend">
+                    <h4>House Blend</h4>
+                    <p>Signature medium roast with chocolate and nutty flavors.</p>
+                    <div class="price">₱85</div>
+                    <button class="btn btn-primary add-to-order" data-name="House Blend" data-price="85">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1494314671902-399b18174975?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Batangas Single Origin">
+                    <h4>Batangas Single Origin</h4>
+                    <p>100% local Batangas beans with bright citrus notes.</p>
+                    <div class="price">₱110</div>
+                    <button class="btn btn-primary add-to-order" data-name="Batangas Single Origin" data-price="110">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1517423440428-f122dbb2a5a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="French Press">
+                    <h4>French Press</h4>
+                    <p>Full-bodied brew highlighting natural oils.</p>
+                    <div class="price">₱130</div>
+                    <button class="btn btn-primary add-to-order" data-name="French Press" data-price="130">Add to Order</button>
+                </div>
+            </div>
+
+            <!-- Cold Brews -->
+            <div class="menu-item cold">
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1517423440428-f122dbb2a5a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Nitro Cold Brew">
+                    <h4>Nitro Cold Brew</h4>
+                    <p>24-hour cold brew nitrogen infused for creamy texture.</p>
+                    <div class="price">₱145</div>
+                    <button class="btn btn-primary add-to-order" data-name="Nitro Cold Brew" data-price="145">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Iced Latte">
+                    <h4>Iced Latte</h4>
+                    <p>Chilled espresso with milk and simple syrup.</p>
+                    <div class="price">₱130</div>
+                    <button class="btn btn-primary add-to-order" data-name="Iced Latte" data-price="130">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1512568400610-42b9a8c02e93?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Flash Brew Iced">
+                    <h4>Flash Brew Iced</h4>
+                    <p>Hot brewed over ice for maximum flavor.</p>
+                    <div class="price">₱120</div>
+                    <button class="btn btn-primary add-to-order" data-name="Flash Brew Iced" data-price="120">Add to Order</button>
+                </div>
+            </div>
+
+            <!-- Specialty -->
+            <div class="menu-item specialty">
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1509043759401-9f5a4f8e69e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Matcha Latte">
+                    <h4>Matcha Latte</h4>
+                    <p>Premium ceremonial grade matcha with steamed milk.</p>
+                    <div class="price">₱155</div>
+                    <button class="btn btn-primary add-to-order" data-name="Matcha Latte" data-price="155">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1572448804205-745d5e3b63c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Chocolate Mocha">
+                    <h4>Chocolate Mocha</h4>
+                    <p>Espresso, chocolate, and steamed milk with whipped cream.</p>
+                    <div class="price">₱145</div>
+                    <button class="btn btn-primary add-to-order" data-name="Chocolate Mocha" data-price="145">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1494314671902-399b18174975?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Affogato">
+                    <h4>Affogato</h4>
+                    <p>Hot espresso poured over vanilla gelato.</p>
+                    <div class="price">₱175</div>
+                    <button class="btn btn-primary add-to-order" data-name="Affogato" data-price="175">Add to Order</button>
+                </div>
+            </div>
+
+            <!-- Coffee Beans -->
+            <div class="menu-item beans">
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="House Blend Beans">
+                    <h4>House Blend (250g)</h4>
+                    <p>Medium roast perfect for drip coffee.</p>
+                    <div class="price">₱320</div>
+                    <button class="btn btn-primary add-to-order" data-name="House Blend 250g" data-price="320">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1577968897966-f97a76e486e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Batangas Single Origin">
+                    <h4>Batangas Single Origin (250g)</h4>
+                    <p>Local beans ideal for pour-over.</p>
+                    <div class="price">₱380</div>
+                    <button class="btn btn-primary add-to-order" data-name="Batangas Single Origin 250g" data-price="380">Add to Order</button>
+                </div>
+                <div class="coffee-card">
+                    <img src="https://images.unsplash.com/photo-1512568400610-42b9a8c02e93?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Espresso Blend">
+                    <h4>Espresso Blend (250g)</h4>
+                    <p>Dark roast for rich crema.</p>
+                    <div class="price">₱350</div>
+                    <button class="btn btn-primary add-to-order" data-name="Espresso Blend 250g" data-price="350">Add to Order</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Gallery Section -->
+<section id="gallery" class="gallery">
+    <div class="container">
+        <div class="section-header">
+            <h2>Gallery</h2>
+            <p>Krav Cafe moments captured</p>
+        </div>
+        <div class="gallery-grid">
+            <!-- Videos -->
+            <div class="gallery-item video">
+                <div class="video-placeholder">
+                    <i class="fas fa-play"></i>
+                    <p>Latte Art Magic</p>
+                </div>
+            </div>
+            <div class="gallery-item video">
+                <div class="video-placeholder">
+                    <i class="fas fa-play"></i>
+                    <p>Bean Roasting</p>
+                </div>
             </div>
             
-            <!-- Espresso Drinks -->
-            <div class="menu-grid">
-                <div class="menu-item espresso active">
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1512568400610-42b9a8c02e93?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Espresso">
-                        <h4>Classic Espresso</h4>
-                        <p>Single shot of rich, bold espresso with caramelized notes. Perfect for a quick boost.</p>
-                        <div class="price">$3.50</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1509043759401-9f5a4f8e69e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Cappuccino">
-                        <h4>Cappuccino</h4>
-                        <p>Equal parts espresso, steamed milk, and velvety foam. Balanced and comforting.</p>
-                        <div class="price">$4.25</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1572448804205-745d5e3b63c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Latte">
-                        <h4>Vanilla Latte</h4>
-                        <p>Smooth espresso with steamed milk and house-made vanilla syrup. Creamy delight.</p>
-                        <div class="price">$4.75</div>
-                    </div>
+            <!-- Photos -->
+            <div class="gallery-item photo">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Krav Cafe Interior">
+                <div class="overlay">
+                    <span>Cozy Interior</span>
                 </div>
-
-                <!-- Brewed Coffee -->
-                <div class="menu-item brewed">
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1577968897966-f97a76e486e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="House Blend">
-                        <h4>House Blend</h4>
-                        <p>Our signature medium roast with chocolate and nutty flavors. Perfect everyday coffee.</p>
-                        <div class="price">$3.00</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1494314671902-399b18174975?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Single Origin">
-                        <h4>Batangas Single Origin</h4>
-                        <p>100% Batangas beans with bright citrus notes and smooth finish. Locally sourced pride.</p>
-                        <div class="price">$3.75</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1517423440428-f122dbb2a5a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="French Press">
-                        <h4>French Press</h4>
-                        <p>Full-bodied brew highlighting the bean's natural oils and flavors. Rich and robust.</p>
-                        <div class="price">$4.50</div>
-                    </div>
+            </div>
+            <div class="gallery-item photo">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Barista at work">
+                <div class="overlay">
+                    <span>Barista Passion</span>
                 </div>
-
-                <!-- Cold Brews -->
-                <div class="menu-item cold">
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1517423440428-f122dbb2a5a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Cold Brew">
-                        <h4>Nitro Cold Brew</h4>
-                        <p>24-hour cold extracted, nitrogen infused for creamy texture without dairy. Refreshing!</p>
-                        <div class="price">$5.00</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Iced Latte">
-                        <h4>Iced Latte</h4>
-                        <p>Chilled espresso with milk and simple syrup. Perfect for Tanauan's hot days.</p>
-                        <div class="price">$4.50</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1512568400610-42b9a8c02e93?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Flash Brew">
-                        <h4>Flash Brew Iced</h4>
-                        <h4>Hot brewed over ice for maximum flavor extraction. Bright and refreshing.</h4>
-                        <div class="price">$4.25</div>
-                    </div>
+            </div>
+            <div class="gallery-item photo">
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Coffee beans">
+                <div class="overlay">
+                    <span>Fresh Beans</span>
                 </div>
-
-                <!-- Specialty -->
-                <div class="menu-item specialty">
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1509043759401-9f5a4f8e69e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Matcha Latte">
-                        <h4>Matcha Latte</h4>
-                        <p>Premium ceremonial grade matcha whisked with steamed milk. Earthy and smooth.</p>
-                        <div class="price">$5.25</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1572448804205-745d5e3b63c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mocha">
-                        <h4>Chocolate Mocha</h4>
-                        <p>Espresso, chocolate, steamed milk topped with whipped cream. Indulgent treat.</p>
-                        <div class="price">$5.00</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1494314671902-399b18174975?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Affogato">
-                        <h4>Affogato</h4>
-                        <p>Hot espresso poured over vanilla gelato. Perfect hot-cold contrast.</p>
-                        <div class="price">$6.00</div>
-                    </div>
+            </div>
+            <div class="gallery-item photo">
+                <img src="https://images.unsplash.com/photo-1577968897966-f97a76e486e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Pour over">
+                <div class="overlay">
+                    <span>Pour Over Magic</span>
                 </div>
-
-                <!-- Coffee Beans -->
-                <div class="menu-item beans">
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="House Blend Beans">
-                        <h4>House Blend (250g)</h4>
-                        <p>Medium roast blend perfect for drip coffee. Chocolatey with nutty finish. 250g bag.</p>
-                        <div class="price">$12.00</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1577968897966-f97a76e486e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Single Origin">
-                        <h4>Batangas Single Origin (250g)</h4>
-                        <p>Local Batangas beans with citrus brightness. Perfect for pour-over. 250g bag.</p>
-                        <div class="price">$15.00</div>
-                    </div>
-                    <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1512568400610-42b9a8c02e93?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Espresso Blend">
-                        <h4>Espresso Blend (250g)</h4>
-                        <p>Dark roast blend for rich crema. Ideal for espresso machines. 250g bag.</p>
-                        <div class="price">$14.00</div>
-                    </div>
+            </div>
+            <div class="gallery-item photo">
+                <img src="https://images.unsplash.com/photo-1509043759401-9f5a4f8e69e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Customers enjoying">
+                <div class="overlay">
+                    <span>Happy Customers</span>
+                </div>
+            </div>
+            <div class="gallery-item video">
+                <div class="video-placeholder">
+                    <i class="fas fa-play"></i>
+                    <p>Customer Stories</p>
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- Location Section -->
     <section id="location" class="location">
         <div class="container">
@@ -292,6 +386,7 @@
         </div>
     </section>
 
+
     <!-- AI Chatbox -->
     <div id="chatbox" class="chatbox">
         <div class="chatbox-header">
@@ -339,7 +434,31 @@
             </div>
         </div>
     </footer>
+<!-- Mini Cart -->
+<div class="mini-cart" id="miniCart">
+    <div class="mini-cart-header">
+        <h4>Your Order <span id="cartCount" class="cart-count">0</span></h4>
+        <button id="closeCartBtn" class="close-cart">✕</button>
+    </div>
+    
+    <div class="mini-cart-items" id="cartItems">
+        <!-- Items will be added here by JavaScript -->
+    </div>
+    
+    <div class="mini-cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <strong id="cartTotal">₱0</strong>
+        </div>
+        <button id="checkoutBtn" class="btn btn-primary">Proceed to Checkout</button>
+    </div>
+</div>
 
+<!-- Cart Icon in Navbar (add this inside .nav-container, after the hamburger) -->
+<div class="cart-icon" id="cartIcon">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartIconCount" class="cart-icon-count">0</span>
+</div>
     <script src="script.js"></script>
 </body>
 </html>

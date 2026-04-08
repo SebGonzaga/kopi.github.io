@@ -1,4 +1,6 @@
-// Mobile Navigation Toggle
+// ====================== KRAV CAFE - CLEANED SCRIPT.JS ======================
+
+// ==================== MOBILE NAVIGATION ====================
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -7,25 +9,27 @@ hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-}));
+// Close mobile menu when clicking a nav link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    });
+});
 
-// Navbar background on scroll
+// ==================== NAVBAR SCROLL EFFECT ====================
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = 'var(--shadow)';
+        navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
     } else {
         navbar.style.background = 'rgba(255, 255, 255, 0.95)';
         navbar.style.boxShadow = 'none';
     }
 });
 
-// Smooth scrolling for anchor links
+// ==================== SMOOTH SCROLLING ====================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -39,160 +43,269 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Menu Tabs Functionality
+// ==================== MENU TABS ====================
 const tabBtns = document.querySelectorAll('.tab-btn');
 const menuItems = document.querySelectorAll('.menu-item');
 
-tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const targetTab = btn.dataset.tab;
-        
-        // Update active tab button
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        // Show corresponding menu items
-        menuItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.classList.contains(targetTab)) {
-                item.classList.add('active');
-            }
-        });
-    });
-});
-
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// Observe elements for animation
-document.querySelectorAll('.hero-content, .about-content, .menu-grid, .contact-content, .coffee-card').forEach(el => {
-    el.classList.add('fade-in');
-    observer.observe(el);
-});
-
-// Contact Form Handling
-const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+function switchTab(targetTab) {
+    // Remove active from all buttons
+    tabBtns.forEach(btn => btn.classList.remove('active'));
     
-    // Simulate form submission
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
-    
-    setTimeout(() => {
-        alert('Thank you for your message! We\'ll get back to you soon.');
-        this.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 1500);
-});
+    // Activate clicked button
+    const activeBtn = document.querySelector(`.tab-btn[data-tab="${targetTab}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
 
-// Parallax effect for hero steam
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const steam = document.querySelector('.coffee-steam');
-    const speed = scrolled * 0.5;
-    
-    if (steam) {
-        steam.style.transform = `translateY(${speed}px) scale(1)`;
-    }
-});
+    // Hide all menu groups
+    menuItems.forEach(item => item.classList.remove('active'));
 
-// Preloader (optional - remove if not needed)
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-});
-
-// Performance optimization - throttle scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
+    // Show selected group
+    const activeMenu = document.querySelector(`.menu-item.${targetTab}`);
+    if (activeMenu) activeMenu.classList.add('active');
 }
 
-window.addEventListener('scroll', throttle(() => {
-    // Scroll-based animations can go here
-}, 16));
-
-// Add loading animation to images
-document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('load', function() {
-        this.style.opacity = '1';
+// Tab click events
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        switchTab(btn.dataset.tab);
     });
-    img.style.opacity = '0';
-    img.style.transition = 'opacity 0.3s ease';
 });
-// Chatbox Functionality
+
+// Set default tab on load
+document.addEventListener('DOMContentLoaded', () => {
+    switchTab('espresso');
+});
+
+// ==================== MINI CART ====================
+let cart = [];
+
+// Cart Elements
+const miniCart = document.getElementById('miniCart');
+const cartIcon = document.getElementById('cartIcon');
+const closeCartBtn = document.getElementById('closeCartBtn');
+const cartItemsContainer = document.getElementById('cartItems');
+const cartTotalEl = document.getElementById('cartTotal');
+const cartCountEl = document.getElementById('cartCount');
+const cartIconCountEl = document.getElementById('cartIconCount');
+const checkoutBtn = document.getElementById('checkoutBtn');
+
+function openCart() {
+    if (miniCart) miniCart.classList.add('open');
+}
+
+function closeCart() {
+    if (miniCart) miniCart.classList.remove('open');
+}
+
+if (cartIcon) cartIcon.addEventListener('click', openCart);
+if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+
+// Add item to cart
+function addToCart(name, price) {
+    const existing = cart.find(item => item.name === name);
+    
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({
+            name: name,
+            price: parseInt(price),
+            quantity: 1
+        });
+    }
+
+    updateCartUI();
+    showNotification(`${name} added to your order! ☕`);
+}
+
+// Update cart display
+function updateCartUI() {
+    if (!cartItemsContainer) return;
+
+    cartItemsContainer.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `<p style="text-align:center; color:#888; padding:40px 20px;">Your cart is empty</p>`;
+        if (cartTotalEl) cartTotalEl.textContent = '₱0';
+        if (cartCountEl) cartCountEl.textContent = '0';
+        if (cartIconCountEl) cartIconCountEl.textContent = '0';
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const html = `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h5>${item.name}</h5>
+                    <p>₱${item.price} × ${item.quantity}</p>
+                </div>
+                <div class="quantity-controls">
+                    <button class="qty-btn minus" data-index="${index}">-</button>
+                    <span>${item.quantity}</span>
+                    <button class="qty-btn plus" data-index="${index}">+</button>
+                </div>
+                <div style="text-align:right;">
+                    <strong>₱${itemTotal}</strong><br>
+                    <small class="remove-item" data-index="${index}">Remove</small>
+                </div>
+            </div>
+        `;
+        cartItemsContainer.innerHTML += html;
+    });
+
+    if (cartTotalEl) cartTotalEl.textContent = `₱${total}`;
+    if (cartCountEl) cartCountEl.textContent = cart.length;
+    if (cartIconCountEl) cartIconCountEl.textContent = cart.length;
+}
+
+// Event Delegation for all cart actions
+document.addEventListener('click', function(e) {
+    // Add to Order buttons
+    if (e.target.classList.contains('add-to-order')) {
+        const name = e.target.getAttribute('data-name');
+        const price = e.target.getAttribute('data-price');
+        if (name && price) addToCart(name, price);
+    }
+
+    // Quantity buttons
+    if (e.target.classList.contains('qty-btn')) {
+        const index = parseInt(e.target.dataset.index);
+        if (isNaN(index) || !cart[index]) return;
+
+        if (e.target.classList.contains('plus')) {
+            cart[index].quantity += 1;
+        } else {
+            cart[index].quantity -= 1;
+            if (cart[index].quantity < 1) cart.splice(index, 1);
+        }
+        updateCartUI();
+    }
+
+    // Remove item
+    if (e.target.classList.contains('remove-item')) {
+        const index = parseInt(e.target.dataset.index);
+        if (!isNaN(index) && cart[index]) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+    }
+});
+
+// Notification
+function showNotification(message) {
+    const notif = document.createElement('div');
+    notif.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        background: var(--primary);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 10003;
+        font-weight: 500;
+    `;
+    notif.textContent = message;
+    document.body.appendChild(notif);
+
+    setTimeout(() => {
+        notif.style.transition = 'opacity 0.4s';
+        notif.style.opacity = '0';
+        setTimeout(() => notif.remove(), 400);
+    }, 2500);
+}
+
+// Checkout
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length > 0) {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`✅ Order placed successfully!\n\nTotal: ₱${total}\n\nThank you for choosing Krav Cafe Tanauan! ☕`);
+            cart = [];
+            updateCartUI();
+            closeCart();
+        } else {
+            alert("Your cart is empty!");
+        }
+    });
+}
+
+// ==================== CONTACT FORM ====================
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            alert("Thank you! Your message has been received. We'll get back to you soon.");
+            this.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }, 1500);
+    });
+}
+
+// ==================== CHATBOX ====================
 const chatbox = document.getElementById('chatbox');
 const chatToggle = document.querySelector('.chatbox-toggle');
 const chatInput = document.getElementById('chatInput');
 const sendBtn = document.getElementById('sendBtn');
 const messagesContainer = document.querySelector('.chatbox-messages');
 
-// Toggle chatbox
-document.querySelector('.btn-secondary[href="#chatbox"]').addEventListener('click', (e) => {
-    e.preventDefault();
-    chatbox.classList.add('active');
+// Open chat from hero button
+document.querySelectorAll('.btn-secondary[href="#chatbox"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (chatbox) chatbox.classList.add('active');
+        if (chatInput) chatInput.focus();
+    });
 });
 
-chatToggle.addEventListener('click', () => {
-    chatbox.classList.remove('active');
-});
-
-// Send message
-function sendMessage() {
-    const message = chatInput.value.trim();
-    if (!message) return;
-
-    // Add user message
-    addMessage(message, 'user');
-    chatInput.value = '';
-
-    // Simulate AI response
-    setTimeout(() => {
-        const responses = getAIResponse(message.toLowerCase());
-        addMessage(responses, 'bot');
-    }, 1000);
+if (chatToggle) {
+    chatToggle.addEventListener('click', () => {
+        if (chatbox) chatbox.classList.remove('active');
+    });
 }
 
-sendBtn.addEventListener('click', sendMessage);
-chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
-});
+function sendMessage() {
+    if (!chatInput) return;
+    const messageText = chatInput.value.trim();
+    if (!messageText) return;
+
+    addMessage(messageText, 'user');
+    chatInput.value = '';
+
+    setTimeout(() => {
+        const aiReply = getAIResponse(messageText.toLowerCase());
+        addMessage(aiReply, 'bot');
+    }, 800);
+}
+
+if (sendBtn) sendBtn.addEventListener('click', sendMessage);
+if (chatInput) {
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+}
 
 function addMessage(text, sender) {
+    if (!messagesContainer) return;
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}`;
     
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content';
-    contentDiv.textContent = text;
+    contentDiv.innerHTML = text;
     
     messageDiv.appendChild(contentDiv);
     messagesContainer.appendChild(messageDiv);
@@ -201,47 +314,37 @@ function addMessage(text, sender) {
 
 function getAIResponse(message) {
     const responses = {
-        'today': "☀️ Perfect day for our **Nitro Cold Brew**! It's smooth, creamy, and refreshing - exactly what you need for Tanauan's weather! 💨",
-        'good': "I'd recommend our **Batangas Single Origin** brewed as pour-over. Bright citrus notes with smooth chocolate finish! 🌞",
-        'study': "For studying, try our **House Blend Americano**. Strong enough to keep you focused, smooth enough not to jitter you! 📚",
-        'work': "Our **Classic Cappuccino** is perfect for work - balanced energy with that comforting milk foam! ☕",
-        'adobo': "**Batangas Single Origin** pairs perfectly with adobo! The citrus brightness cuts through the richness. 🇵🇭",
-        'sweet': "Try our **Vanilla Latte** with house-made syrup. Creamy, sweet, and not too heavy! 🍦",
-        'cold': "**Nitro Cold Brew** all the way! Nitrogen gives it that creamy Guinness-like texture without dairy! ❄️",
-        'hot': "Our **French Press** brings out maximum flavor. Rich body with chocolate and nutty notes! 🔥",
-        'beans': "Get our **House Blend beans (250g)** for home brewing. Perfect for drip coffee makers! ☕🏠",
-        'beginner': "Start with our **House Blend** - approachable, balanced, and won't overwhelm you! 😊",
-        'default': "Try our **Nitro Cold Brew** today! It's our bestseller in Tanauan. What else can I help with? ☕"
+        'today': "☀️ Today's bestseller is our **Nitro Cold Brew**! Creamy and refreshing.",
+        'good': "I recommend our **Batangas Single Origin** pour-over. Bright and delicious!",
+        'study': "For studying, try our **House Blend Americano** — focused energy without jitters.",
+        'work': "Our **Classic Cappuccino** is perfect for work sessions.",
+        'adobo': "**Batangas Single Origin** pairs amazingly with adobo!",
+        'cold': "**Nitro Cold Brew** is highly recommended today!",
+        'hot': "Try our **French Press** for rich, full-bodied flavor.",
+        'beans': "Our **House Blend (250g)** is great for home brewing!",
+        'default': "☕ What kind of coffee are you craving today? I can help recommend something perfect!"
     };
 
     for (const [key, response] of Object.entries(responses)) {
-        if (message.includes(key)) {
-            return response;
-        }
+        if (message.includes(key)) return response;
     }
     return responses.default;
 }
 
-// Enhanced menu grid responsiveness
-const menuGrid = document.querySelector('.menu-grid');
-const resizeObserver = new ResizeObserver(() => {
-    const containerWidth = menuGrid.offsetWidth;
-    if (containerWidth < 900) {
-        menuGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(280px, 1fr))';
-    } else {
-        menuGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(320px, 1fr))';
-    }
-});
-resizeObserver.observe(menuGrid);
-
-// Auto-scroll to active menu section
-document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const targetTab = btn.dataset.tab;
-        // Scroll to menu section smoothly
-        document.getElementById('menu').scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
+// ==================== SCROLL ANIMATIONS ====================
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
     });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in, .coffee-card').forEach(el => {
+    observer.observe(el);
+});
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartUI();
 });

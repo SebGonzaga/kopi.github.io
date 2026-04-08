@@ -186,12 +186,7 @@ body {
     transform: translateY(-2px);
 }
 
-.hero-image {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .hero-image::before {
     content: '';
@@ -208,20 +203,14 @@ body {
     50% { transform: translateY(-20px); }
 }
 
-.coffee-steam {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
-    border-radius: 50%;
-    position: relative;
-    z-index: 2;
-    animation: steam 3s ease-in-out infinite;
-}
+
 
 @keyframes steam {
     0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
     50% { transform: scale(1.1) rotate(180deg); opacity: 1; }
 }
+
+
 
 /* Section Headers */
 .section-header {
@@ -633,16 +622,224 @@ body {
 }
 
 /* Hero Updates */
+/* ==================== HERO COFFEE CUP ANIMATION ==================== */
+/* ==================== HERO COFFEE CUP ANIMATION ==================== */
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
 .coffee-cup {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle at 30% 30%, #F8F5F0 40%, #E8D9B8 70%, #D4A574 100%);
-    border-radius: 50% 50% 60% 40%;
+    position: relative;
+    width: 260px;
+    height: 260px;
+    /* Changed to brown ceramic colors */
+    background: linear-gradient(145deg, #d8c3a5, #b89c7e, #a68c6b);
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    box-shadow: 
+        0 25px 40px rgba(0,0,0,0.2),
+        inset 0 15px 25px rgba(255,255,255,0.4),
+        inset 0 -15px 25px rgba(0,0,0,0.15),
+        0 0 0 2px rgba(255,255,255,0.3);
+    animation: cupFloat 4.5s ease-in-out infinite;
     z-index: 3;
-    animation: cupFloat 4s ease-in-out infinite;
+}
+
+/* Cup handle - updated to match brown ceramic */
+.coffee-cup::after {
+    content: '';
+    position: absolute;
+    right: -45px;
+    top: 80px;
+    width: 70px;
+    height: 90px;
+    border: 18px solid #a68c6b;
+    border-radius: 50%;
+    border-left: none;
+    transform: rotate(15deg);
+    box-shadow: 
+        inset 0 5px 10px rgba(255,255,255,0.3),
+        0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Coffee liquid */
+.coffee-cup::before {
+    content: '';
+    position: absolute;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 75px;
+    background: linear-gradient(#3c2f2f, #5c4033);
+    border-radius: 50%;
+    box-shadow: inset 0 8px 15px rgba(0,0,0,0.4);
+    z-index: 2;
+}
+
+/* Floating Coffee Beans */
+.coffee-bean {
+    position: absolute;
+    width: 24px;
+    height: 12px;
+    background: radial-gradient(ellipse at center, #4a2c1f 40%, #3d231a 70%, #2d1a13 100%);
+    border-radius: 50% 20% 50% 20% / 60% 40% 60% 40%;
+    box-shadow: 
+        inset 2px 1px 3px rgba(255,255,255,0.3),
+        0 4px 8px rgba(0,0,0,0.3);
+    animation: beanFloat 6s ease-in-out infinite;
+    z-index: 1;
+}
+
+.coffee-bean:nth-child(1) {
+    top: 120px;
+    left: 80px;
+    animation-delay: 0s;
+    animation-duration: 5.5s;
+}
+
+.coffee-bean:nth-child(2) {
+    top: 90px;
+    right: 60px;
+    width: 20px;
+    height: 10px;
+    animation-delay: 1.2s;
+    animation-duration: 6.2s;
+}
+
+.coffee-bean:nth-child(3) {
+    top: 200px;
+    left: 40px;
+    width: 22px;
+    height: 11px;
+    animation-delay: 2.8s;
+    animation-duration: 5.8s;
+}
+
+.coffee-bean:nth-child(4) {
+    bottom: 60px;
+    right: 80px;
+    width: 26px;
+    height: 13px;
+    animation-delay: 0.8s;
+    animation-duration: 6.5s;
+}
+
+/* Enhanced Steam System */
+.coffee-steam {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 5%, rgba(255,255,255,0.4) 40%, transparent 70%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.9;
+    animation: steamRise 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    z-index: 4;
+    filter: blur(6px);
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+}
+
+@keyframes cupFloat {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-25px) rotate(3deg); }
+}
+
+@keyframes steamRise {
+    0%   { 
+        transform: translateY(0) scale(0.7) rotate(0deg); 
+        opacity: 0.5; 
+    }
+    25%  { 
+        transform: translateY(-20px) scale(0.95) rotate(2deg); 
+        opacity: 0.85; 
+    }
+    50%  { 
+        transform: translateY(-45px) scale(1.15) rotate(-1deg); 
+        opacity: 1; 
+    }
+    75%  { 
+        transform: translateY(-70px) scale(0.9) rotate(1deg); 
+        opacity: 0.7; 
+    }
+    100% { 
+        transform: translateY(-95px) scale(0.6) rotate(-2deg); 
+        opacity: 0; 
+    }
+}
+
+@keyframes beanFloat {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+        opacity: 0.8;
+    }
+    33% { 
+        transform: translateY(-12px) rotate(180deg); 
+        opacity: 1;
+    }
+    66% { 
+        transform: translateY(-8px) rotate(360deg); 
+        opacity: 0.9;
+    }
+}
+
+/* Enhanced Steam Layers */
+.coffee-steam::before,
+.coffee-steam::after,
+.coffee-steam:nth-child(2)::before,
+.coffee-steam:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 8%, rgba(255,255,255,0.3) 50%, transparent 75%);
+    border-radius: 50%;
+    filter: blur(4px);
+}
+
+.coffee-steam::before {
+    width: 90px;
+    height: 130px;
+    top: -25px;
+    left: 15px;
+    animation: steamRise 3.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite 0.4s;
+    opacity: 0.7;
+}
+
+.coffee-steam::after {
+    width: 70px;
+    height: 110px;
+    top: -40px;
+    right: 20px;
+    animation: steamRise 3.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite 1.0s;
+    opacity: 0.65;
+}
+
+/* Additional subtle steam wisps */
+.coffee-steam:nth-child(2) {
+    animation-delay: -0.8s;
+    opacity: 0.6;
+}
+
+.coffee-steam:nth-child(2)::before {
+    width: 50px;
+    height: 80px;
+    top: -15px;
+    left: 45px;
+    animation: steamRise 4.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite 0.2s;
+}
+
+.coffee-steam:nth-child(2)::after {
+    width: 60px;
+    height: 90px;
+    top: -30px;
+    right: 40px;
+    animation: steamRise 3.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite 1.6s;
 }
 
 @keyframes cupFloat {
@@ -922,4 +1119,919 @@ body {
         padding: 0.5rem 1.5rem;
         font-size: 0.9rem;
     }
+}
+/* Gallery Section */
+.gallery {
+    padding: 8rem 0;
+    background: var(--light);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.video-placeholder,
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover .video-placeholder,
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.video-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.video-placeholder p,
+.overlay span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+/* MOBILE RESPONSIVE UPDATES - Add this to your existing CSS */
+
+/* Mobile Navigation Improvements */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.98);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: var(--shadow);
+        padding: 2rem 0;
+        backdrop-filter: blur(10px);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li {
+        margin: 1rem 0;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+/* Hero Mobile */
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+        padding: 2rem 20px;
+    }
+    
+    .hero-title-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem !important;
+    }
+    
+    .animated-coffee-cup {
+        width: 60px;
+        height: 80px;
+    }
+    
+    .cup-body {
+        width: 45px;
+        height: 55px;
+        left: 8px;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+/* Menu Mobile - NON-CRAMPED */
+@media (max-width: 768px) {
+    .menu-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+    
+    .tab-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+        min-width: 200px;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .coffee-card {
+        padding: 1.5rem;
+    }
+    
+    .coffee-card img {
+        height: 220px;
+    }
+}
+
+/* Gallery Mobile */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+    }
+    
+    .gallery-item {
+        height: 200px;
+    }
+    
+    .video-placeholder i,
+    .overlay span {
+        font-size: 1rem;
+    }
+}
+
+/* About Mobile */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .about-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Location & Contact Mobile */
+@media (max-width: 768px) {
+    .location-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .hours-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .contact-form {
+        gap: 1rem;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        padding: 1rem;
+    }
+}
+
+/* Chatbox Mobile */
+@media (max-width: 480px) {
+    .chatbox {
+        width: 95vw;
+        height: 70vh;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+        margin: 0;
+    }
+    
+    .chatbox-messages {
+        padding: 1rem;
+    }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .gallery-item {
+        height: 180px;
+    }
+    
+    .coffee-card h4 {
+        font-size: 1.3rem;
+    }
+    
+    .price {
+        font-size: 1.4rem;
+    }
+}
+
+/* Touch-Friendly Buttons */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .tab-btn,
+    #sendBtn {
+        min-height: 50px;
+        padding: 1rem 1.5rem;
+    }
+    
+    .hamburger {
+        padding: 5px;
+    }
+}
+
+/* Prevent Horizontal Scroll */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .menu-grid,
+    .gallery-grid {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+/* SUPERIOR MOBILE MENU & LOCATION */
+
+/* Menu Mobile - Premium Look */
+@media (max-width: 768px) {
+    .menu {
+        padding: 4rem 0;
+    }
+    
+    .menu-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        margin-bottom: 2.5rem;
+        padding: 0 10px;
+    }
+    
+    .tab-btn {
+        padding: 1rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 15px;
+        min-height: 50px;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .tab-btn.active {
+        box-shadow: 0 8px 25px rgba(111,78,55,0.3);
+        transform: translateY(-2px);
+    }
+    
+    .menu-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+        max-width: 380px;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+    
+    .coffee-card {
+        padding: 2rem 1.75rem;
+        border-radius: 25px;
+        background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border: 1px solid rgba(255,255,255,0.5);
+    }
+    
+    .coffee-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+    
+    .coffee-card img {
+        height: 200px;
+        border-radius: 20px;
+        margin-bottom: 1.25rem;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .coffee-card h4 {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+    
+    .coffee-card p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+        color: #555;
+    }
+    
+    .price {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--primary);
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+}
+
+/* Location Mobile - Clean & Spacious */
+@media (max-width: 768px) {
+    .location {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, var(--light) 0%, #f0f0f0 100%);
+    }
+    
+    .location-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .location-info {
+        background: white;
+        padding: 2.5rem 2rem;
+        border-radius: 25px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .location-address {
+        margin-bottom: 2rem;
+    }
+    
+    .location-address i {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        display: block;
+    }
+    
+    .location-address h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+    }
+    
+    .location-hours h4 {
+        font-size: 1.3rem;
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+    }
+    
+    .hours-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 1.5rem;
+        border-radius: 20px;
+        border: 1px solid rgba(111,78,55,0.1);
+    }
+    
+    .hours-grid div:nth-child(odd) {
+        font-weight: 700;
+        color: var(--primary);
+    }
+    
+    .map-placeholder {
+        height: 250px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 25px;
+        box-shadow: 0 15px 50px rgba(111,78,55,0.3);
+    }
+    
+    .map-placeholder i {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .map-placeholder p {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+    .menu-tabs {
+        grid-template-columns: 1fr;
+    }
+    
+    .coffee-card {
+        padding: 1.75rem 1.5rem;
+        margin: 0 5px;
+    }
+    
+    .coffee-card img {
+        height: 180px;
+    }
+    
+    .location-info {
+        padding: 2rem 1.5rem;
+        margin: 0 10px;
+    }
+    
+    .hours-grid {
+        padding: 1.25rem;
+    }
+    
+    .map-placeholder {
+        height: 220px;
+        margin: 0 10px;
+    }
+}
+
+/* Landscape Mobile Fix */
+@media (max-height: 500px) and (orientation: landscape) {
+    .menu {
+        padding: 2rem 0;
+    }
+    
+    .coffee-card {
+        padding: 1.25rem;
+    }
+    
+    .coffee-card img {
+        height: 150px;
+    }
+}
+
+/* ====================== MINI CART ====================== */
+.mini-cart {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 380px;
+    height: 100vh;
+    background: white;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+    z-index: 10002;
+    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: flex;
+    flex-direction: column;
+}
+
+.mini-cart.open {
+    right: 0;
+}
+
+.mini-cart-header {
+    padding: 1.5rem 1.5rem;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-count {
+    background: rgba(255,255,255,0.3);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-left: 8px;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mini-cart-items {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-info h5 {
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+}
+
+.cart-item-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--primary);
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity-controls button {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mini-cart-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-left: 20px;
+}
+
+.cart-icon-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--secondary);
+    color: white;
+    font-size: 0.75rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .mini-cart {
+        width: 100vw;
+        right: -100vw;
+    }
+}
+/* MINI CART ICON IN NAVBAR */
+.nav-container {
+    position: relative;
+}
+
+.cart-icon {
+    font-size: 1.5rem;
+    color: var(--primary);
+    cursor: pointer;
+    position: relative;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+}
+
+.cart-icon:hover {
+    color: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.cart-icon-count {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: var(--secondary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Make sure mini cart appears on top */
+.mini-cart {
+    z-index: 10002;
+}
+/* ====================== MOBILE OPTIMIZATIONS ====================== */
+
+/* General Mobile Improvements */
+@media (max-width: 768px) {
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Navbar */
+    .nav-container {
+        padding: 0 15px;
+    }
+    
+    .nav-logo {
+        font-size: 1.4rem;
+    }
+    
+    .nav-logo i {
+        font-size: 1.8rem;
+    }
+    
+    /* Cart Icon */
+    .cart-icon {
+        font-size: 1.6rem;
+        margin-left: 12px;
+    }
+    
+    .cart-icon-count {
+        width: 17px;
+        height: 17px;
+        font-size: 0.7rem;
+        top: -5px;
+        right: -7px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        min-height: 85vh;
+        padding-top: 70px;
+    }
+    
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+        padding: 2rem 15px;
+    }
+    
+    .hero-title {
+        font-size: 2.6rem;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.15rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 1rem 2rem;
+    }
+    
+    /* Menu Section */
+    .menu-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        padding: 0 10px;
+    }
+    
+    .tab-btn {
+        padding: 14px 16px;
+        font-size: 0.95rem;
+        min-height: 52px;
+        border-radius: 16px;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+        padding: 0 5px;
+    }
+    
+    .coffee-card {
+        padding: 1.75rem 1.5rem;
+        border-radius: 24px;
+    }
+    
+    .coffee-card img {
+        height: 210px;
+        border-radius: 18px;
+    }
+    
+    .coffee-card h4 {
+        font-size: 1.35rem;
+    }
+    
+    .price {
+        font-size: 1.55rem;
+    }
+    
+    /* Add to Order Button */
+    .coffee-card .btn {
+        width: 100%;
+        margin-top: 12px;
+        padding: 14px;
+        font-size: 1rem;
+    }
+    
+    /* Gallery */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    
+    .gallery-item {
+        height: 220px;
+    }
+    
+    /* Location & Contact */
+    .location-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+    }
+    
+    .about-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    /* Mini Cart */
+    .mini-cart {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .mini-cart.open {
+        right: 0;
+    }
+    
+    /* Chatbox */
+    .chatbox {
+        width: 92vw;
+        height: 75vh;
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+        margin: 0;
+        border-radius: 20px;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 2.5rem 15px 2rem;
+    }
+}
+
+/* Extra Small Screens (iPhone, small Android) */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.35rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2.1rem;
+    }
+    
+    .menu-tabs {
+        grid-template-columns: 1fr;
+    }
+    
+    .coffee-card {
+        padding: 1.5rem;
+    }
+    
+    .coffee-card img {
+        height: 190px;
+    }
+    
+    .tab-btn {
+        padding: 13px 15px;
+    }
+    
+    .mini-cart .mini-cart-header {
+        padding: 1.25rem 1.25rem;
+    }
+}
+
+/* Touch Friendly Improvements */
+@media (hover: none) and (pointer: coarse) {
+    .btn, 
+    .tab-btn, 
+    .add-to-order,
+    .qty-btn {
+        min-height: 52px;
+        padding: 14px 20px;
+    }
+    
+    .hamburger {
+        padding: 8px;
+    }
+}
+
+/* Prevent unwanted horizontal scroll */
+body {
+    overflow-x: hidden;
+}
+
+.menu-grid,
+.gallery-grid,
+.about-grid {
+    padding-left: 5px;
+    padding-right: 5px;
 }
