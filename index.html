@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krav - Premium Coffee Experience</title>
+    <title>Krav Cafe - Tanauan | Premium Coffee Experience</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Floating Coffee Beans -->
+    <div class="floating-beans">
+        <div class="bean bean-1"></div>
+        <div class="bean bean-2"></div>
+        <div class="bean bean-3"></div>
+        <div class="bean bean-4"></div>
+        <div class="bean bean-5"></div>
+        <div class="bean bean-6"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <i class="fas fa-coffee"></i>
-                <span>Krav</span>
+                <span>Krav Cafe</span>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#menu" class="nav-link">Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#menu" class="nav-link">Menu</a></li>
+                <li class="nav-item"><a href="#location" class="nav-link">Location</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -42,15 +45,16 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">Discover the Art of Coffee</h1>
-                <p class="hero-subtitle">Experience premium specialty coffee crafted with passion and perfection</p>
+                <h1 class="hero-title">Welcome to Krav Cafe</h1>
+                <p class="hero-subtitle">Your favorite coffee spot in Tanauan. Freshly roasted beans and perfect brews daily.</p>
                 <div class="hero-buttons">
-                    <a href="#menu" class="btn btn-primary">View Menu</a>
-                    <a href="#contact" class="btn btn-secondary">Order Now</a>
+                    <a href="#menu" class="btn btn-primary">Explore Menu</a>
+                    <a href="#chatbox" class="btn btn-secondary">Ask AI Barista</a>
                 </div>
             </div>
             <div class="hero-image">
                 <div class="coffee-steam"></div>
+                <div class="coffee-cup"></div>
             </div>
         </div>
     </section>
@@ -59,30 +63,24 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2>Our Story</h2>
-                <p>From bean to cup, every detail matters</p>
+                <h2>About Krav Cafe</h2>
+                <p>Established in Tanauan, we're passionate about quality coffee and community</p>
             </div>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coffee making">
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Locally Sourced</h3>
+                    <p>We partner with local farmers in Batangas to bring you the freshest coffee beans from our region.</p>
                 </div>
-                <div class="about-text">
-                    <h3>Passion in Every Cup</h3>
-                    <p>At Krav, we source the finest beans from sustainable farms around the world. Our expert roasters and baristas work together to create unforgettable coffee experiences.</p>
-                    <div class="features">
-                        <div class="feature">
-                            <i class="fas fa-leaf"></i>
-                            <span>Organic Beans</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-award"></i>
-                            <span>Award Winning</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-shipping-fast"></i>
-                            <span>Fast Delivery</span>
-                        </div>
-                    </div>
+                <div class="about-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Hub</h3>
+                    <p>Krav Cafe is more than coffee - it's where Tanauan friends meet, work, and create memories.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Made with Love</h3>
+                    <p>Every cup is crafted with care by our skilled baristas who treat coffee like an art form.</p>
                 </div>
             </div>
         </div>
@@ -93,36 +91,159 @@
         <div class="container">
             <div class="section-header">
                 <h2>Our Menu</h2>
-                <p>Signature blends and seasonal specials</p>
+                <p>Expanded selection of premium coffees and specialties</p>
             </div>
             <div class="menu-tabs">
-                <button class="tab-btn active" data-tab="espresso">Espresso</button>
-                <button class="tab-btn" data-tab="brewed">Brewed</button>
-                <button class="tab-btn" data-tab="cold">Cold Brew</button>
+                <button class="tab-btn active" data-tab="espresso">Espresso Drinks</button>
+                <button class="tab-btn" data-tab="brewed">Brewed Coffee</button>
+                <button class="tab-btn" data-tab="cold">Cold Brews</button>
+                <button class="tab-btn" data-tab="specialty">Specialty</button>
+                <button class="tab-btn" data-tab="beans">Coffee Beans</button>
             </div>
+            
+            <!-- Espresso Drinks -->
             <div class="menu-grid">
                 <div class="menu-item espresso active">
                     <div class="coffee-card">
                         <img src="https://images.unsplash.com/photo-1512568400610-42b9a8c02e93?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Espresso">
                         <h4>Classic Espresso</h4>
-                        <p>Rich, bold, and intense</p>
+                        <p>Single shot of rich, bold espresso with caramelized notes. Perfect for a quick boost.</p>
                         <div class="price">$3.50</div>
                     </div>
-                </div>
-                <div class="menu-item brewed">
                     <div class="coffee-card">
-                        <img src="https://images.unsplash.com/photo-1577968897966-f97a76e486e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pour Over">
-                        <h4>Pour Over</h4>
-                        <p>Single origin perfection</p>
-                        <div class="price">$4.00</div>
+                        <img src="https://images.unsplash.com/photo-1509043759401-9f5a4f8e69e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Cappuccino">
+                        <h4>Cappuccino</h4>
+                        <p>Equal parts espresso, steamed milk, and velvety foam. Balanced and comforting.</p>
+                        <div class="price">$4.25</div>
+                    </div>
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1572448804205-745d5e3b63c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Latte">
+                        <h4>Vanilla Latte</h4>
+                        <p>Smooth espresso with steamed milk and house-made vanilla syrup. Creamy delight.</p>
+                        <div class="price">$4.75</div>
                     </div>
                 </div>
+
+                <!-- Brewed Coffee -->
+                <div class="menu-item brewed">
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1577968897966-f97a76e486e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="House Blend">
+                        <h4>House Blend</h4>
+                        <p>Our signature medium roast with chocolate and nutty flavors. Perfect everyday coffee.</p>
+                        <div class="price">$3.00</div>
+                    </div>
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1494314671902-399b18174975?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Single Origin">
+                        <h4>Batangas Single Origin</h4>
+                        <p>100% Batangas beans with bright citrus notes and smooth finish. Locally sourced pride.</p>
+                        <div class="price">$3.75</div>
+                    </div>
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1517423440428-f122dbb2a5a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="French Press">
+                        <h4>French Press</h4>
+                        <p>Full-bodied brew highlighting the bean's natural oils and flavors. Rich and robust.</p>
+                        <div class="price">$4.50</div>
+                    </div>
+                </div>
+
+                <!-- Cold Brews -->
                 <div class="menu-item cold">
                     <div class="coffee-card">
                         <img src="https://images.unsplash.com/photo-1517423440428-f122dbb2a5a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Cold Brew">
-                        <h4>Cold Brew</h4>
-                        <p>Smooth and refreshing</p>
+                        <h4>Nitro Cold Brew</h4>
+                        <p>24-hour cold extracted, nitrogen infused for creamy texture without dairy. Refreshing!</p>
+                        <div class="price">$5.00</div>
+                    </div>
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Iced Latte">
+                        <h4>Iced Latte</h4>
+                        <p>Chilled espresso with milk and simple syrup. Perfect for Tanauan's hot days.</p>
                         <div class="price">$4.50</div>
+                    </div>
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1512568400610-42b9a8c02e93?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Flash Brew">
+                        <h4>Flash Brew Iced</h4>
+                        <h4>Hot brewed over ice for maximum flavor extraction. Bright and refreshing.</h4>
+                        <div class="price">$4.25</div>
+                    </div>
+                </div>
+
+                <!-- Specialty -->
+                <div class="menu-item specialty">
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1509043759401-9f5a4f8e69e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Matcha Latte">
+                        <h4>Matcha Latte</h4>
+                        <p>Premium ceremonial grade matcha whisked with steamed milk. Earthy and smooth.</p>
+                        <div class="price">$5.25</div>
+                    </div>
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1572448804205-745d5e3b63c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mocha">
+                        <h4>Chocolate Mocha</h4>
+                        <p>Espresso, chocolate, steamed milk topped with whipped cream. Indulgent treat.</p>
+                        <div class="price">$5.00</div>
+                    </div>
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1494314671902-399b18174975?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Affogato">
+                        <h4>Affogato</h4>
+                        <p>Hot espresso poured over vanilla gelato. Perfect hot-cold contrast.</p>
+                        <div class="price">$6.00</div>
+                    </div>
+                </div>
+
+                <!-- Coffee Beans -->
+                <div class="menu-item beans">
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="House Blend Beans">
+                        <h4>House Blend (250g)</h4>
+                        <p>Medium roast blend perfect for drip coffee. Chocolatey with nutty finish. 250g bag.</p>
+                        <div class="price">$12.00</div>
+                    </div>
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1577968897966-f97a76e486e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Single Origin">
+                        <h4>Batangas Single Origin (250g)</h4>
+                        <p>Local Batangas beans with citrus brightness. Perfect for pour-over. 250g bag.</p>
+                        <div class="price">$15.00</div>
+                    </div>
+                    <div class="coffee-card">
+                        <img src="https://images.unsplash.com/photo-1512568400610-42b9a8c02e93?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Espresso Blend">
+                        <h4>Espresso Blend (250g)</h4>
+                        <p>Dark roast blend for rich crema. Ideal for espresso machines. 250g bag.</p>
+                        <div class="price">$14.00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="location">
+        <div class="container">
+            <div class="section-header">
+                <h2>Visit Us in Tanauan</h2>
+                <p>Find us at the heart of Tanauan, Batangas</p>
+            </div>
+            <div class="location-content">
+                <div class="location-info">
+                    <div class="location-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Krav Cafe Tanauan</h3>
+                        <p>123 Rizal Street<br>Tanauan City, Batangas 4234<br>Philippines</p>
+                    </div>
+                    <div class="location-hours">
+                        <h4>Opening Hours</h4>
+                        <div class="hours-grid">
+                            <div>Monday - Friday</div>
+                            <div>7:00 AM - 9:00 PM</div>
+                            <div>Saturday - Sunday</div>
+                            <div>8:00 AM - 10:00 PM</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="location-map">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map"></i>
+                        <p>📍 Google Maps Integration Coming Soon</p>
+                        <small>123 Rizal St, Tanauan City, Batangas</small>
                     </div>
                 </div>
             </div>
@@ -134,41 +255,72 @@
         <div class="container">
             <div class="section-header">
                 <h2>Get In Touch</h2>
-                <p>Ready to experience Krav? Contact us today</p>
+                <p>Questions? Reservations? We'd love to hear from you!</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-phone"></i>
                         <div>
-                            <h4>Location</h4>
-                            <p>123 Coffee St, Brew City</p>
+                            <h4>Call Us</h4>
+                            <p>+63 123 456 7890</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-envelope"></i>
                         <div>
-                            <h4>Phone</h4>
-                            <p>(555) 123-4567</p>
+                            <h4>Email</h4>
+                            <p>hello@kravcafe.ph</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-clock"></i>
                         <div>
-                            <h4>Hours</h4>
-                            <p>Mon-Fri 7AM-7PM</p>
+                            <h4>Delivery</h4>
+                            <p>Available via GrabFood & FoodPanda</p>
                         </div>
                     </div>
                 </div>
                 <form class="contact-form">
                     <input type="text" placeholder="Your Name" required>
                     <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <input type="tel" placeholder="Your Phone">
+                    <textarea placeholder="Tell us about your coffee needs..." rows="5" required></textarea>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- AI Chatbox -->
+    <div id="chatbox" class="chatbox">
+        <div class="chatbox-header">
+            <div class="chatbot-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+            <h4>Krav AI Barista</h4>
+            <button class="chatbox-toggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbox-messages">
+            <div class="message bot">
+                <div class="message-content">
+                    👋 Hi! I'm your Krav Cafe AI Barista! Ask me:
+                    <br>• "What's good today?"
+                    <br>• "Best coffee for studying?"
+                    <br>• "Pairing for adobo?"
+                    <br>• "Cold brew recommendations"
+                </div>
+            </div>
+        </div>
+        <div class="chatbox-input">
+            <input type="text" placeholder="Ask me about coffee..." id="chatInput">
+            <button id="sendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -176,9 +328,14 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <i class="fas fa-coffee"></i>
-                    <span>Krav</span>
+                    <span>Krav Cafe Tanauan</span>
                 </div>
-                <p>&copy; 2024 Krav. All rights reserved.</p>
+                <p>&copy; 2024 Krav Cafe. Brewed with ❤️ in Tanauan, Batangas.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
     </footer>

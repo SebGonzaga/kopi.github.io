@@ -148,3 +148,100 @@ document.querySelectorAll('img').forEach(img => {
     img.style.opacity = '0';
     img.style.transition = 'opacity 0.3s ease';
 });
+// Chatbox Functionality
+const chatbox = document.getElementById('chatbox');
+const chatToggle = document.querySelector('.chatbox-toggle');
+const chatInput = document.getElementById('chatInput');
+const sendBtn = document.getElementById('sendBtn');
+const messagesContainer = document.querySelector('.chatbox-messages');
+
+// Toggle chatbox
+document.querySelector('.btn-secondary[href="#chatbox"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    chatbox.classList.add('active');
+});
+
+chatToggle.addEventListener('click', () => {
+    chatbox.classList.remove('active');
+});
+
+// Send message
+function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    // Add user message
+    addMessage(message, 'user');
+    chatInput.value = '';
+
+    // Simulate AI response
+    setTimeout(() => {
+        const responses = getAIResponse(message.toLowerCase());
+        addMessage(responses, 'bot');
+    }, 1000);
+}
+
+sendBtn.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+});
+
+function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}`;
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+    contentDiv.textContent = text;
+    
+    messageDiv.appendChild(contentDiv);
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function getAIResponse(message) {
+    const responses = {
+        'today': "☀️ Perfect day for our **Nitro Cold Brew**! It's smooth, creamy, and refreshing - exactly what you need for Tanauan's weather! 💨",
+        'good': "I'd recommend our **Batangas Single Origin** brewed as pour-over. Bright citrus notes with smooth chocolate finish! 🌞",
+        'study': "For studying, try our **House Blend Americano**. Strong enough to keep you focused, smooth enough not to jitter you! 📚",
+        'work': "Our **Classic Cappuccino** is perfect for work - balanced energy with that comforting milk foam! ☕",
+        'adobo': "**Batangas Single Origin** pairs perfectly with adobo! The citrus brightness cuts through the richness. 🇵🇭",
+        'sweet': "Try our **Vanilla Latte** with house-made syrup. Creamy, sweet, and not too heavy! 🍦",
+        'cold': "**Nitro Cold Brew** all the way! Nitrogen gives it that creamy Guinness-like texture without dairy! ❄️",
+        'hot': "Our **French Press** brings out maximum flavor. Rich body with chocolate and nutty notes! 🔥",
+        'beans': "Get our **House Blend beans (250g)** for home brewing. Perfect for drip coffee makers! ☕🏠",
+        'beginner': "Start with our **House Blend** - approachable, balanced, and won't overwhelm you! 😊",
+        'default': "Try our **Nitro Cold Brew** today! It's our bestseller in Tanauan. What else can I help with? ☕"
+    };
+
+    for (const [key, response] of Object.entries(responses)) {
+        if (message.includes(key)) {
+            return response;
+        }
+    }
+    return responses.default;
+}
+
+// Enhanced menu grid responsiveness
+const menuGrid = document.querySelector('.menu-grid');
+const resizeObserver = new ResizeObserver(() => {
+    const containerWidth = menuGrid.offsetWidth;
+    if (containerWidth < 900) {
+        menuGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(280px, 1fr))';
+    } else {
+        menuGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(320px, 1fr))';
+    }
+});
+resizeObserver.observe(menuGrid);
+
+// Auto-scroll to active menu section
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const targetTab = btn.dataset.tab;
+        // Scroll to menu section smoothly
+        document.getElementById('menu').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+});
