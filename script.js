@@ -76,30 +76,37 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==================== MINI CART ====================
+// ==================== MINI CART LOGIC ====================
+// ====================== KRAV CAFE - FIXED CART ======================
+
 let cart = [];
 
-// Cart Elements
+// ==================== MINI CART ELEMENTS ====================
 const miniCart = document.getElementById('miniCart');
 const cartIcon = document.getElementById('cartIcon');
 const closeCartBtn = document.getElementById('closeCartBtn');
 const cartItemsContainer = document.getElementById('cartItems');
 const cartTotalEl = document.getElementById('cartTotal');
-const cartCountEl = document.getElementById('cartCount');
-const cartIconCountEl = document.getElementById('cartIconCount');
+const cartIconCount = document.getElementById('cartIconCount');
+const cartOverlay = document.getElementById('cartOverlay');
 const checkoutBtn = document.getElementById('checkoutBtn');
 
+// Open & Close Cart
 function openCart() {
     if (miniCart) miniCart.classList.add('open');
+    if (cartOverlay) cartOverlay.style.display = 'block';
 }
 
 function closeCart() {
     if (miniCart) miniCart.classList.remove('open');
+    if (cartOverlay) cartOverlay.style.display = 'none';
 }
 
 if (cartIcon) cartIcon.addEventListener('click', openCart);
 if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
 
-// Add item to cart
+// Add to Cart Function
 function addToCart(name, price) {
     const existing = cart.find(item => item.name === name);
     
@@ -112,57 +119,54 @@ function addToCart(name, price) {
             quantity: 1
         });
     }
-
+    
     updateCartUI();
-    showNotification(`${name} added to your order! ☕`);
+    showNotification(`${name} added to cart! ☕`);
 }
 
-// Update cart display
+// Update Cart UI
 function updateCartUI() {
     if (!cartItemsContainer) return;
-
+    
     cartItemsContainer.innerHTML = '';
-
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = `<p style="text-align:center; color:#888; padding:40px 20px;">Your cart is empty</p>`;
-        if (cartTotalEl) cartTotalEl.textContent = '₱0';
-        if (cartCountEl) cartCountEl.textContent = '0';
-        if (cartIconCountEl) cartIconCountEl.textContent = '0';
-        return;
-    }
-
     let total = 0;
 
-    cart.forEach((item, index) => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px; color: #999;">
+                <i class="fas fa-coffee" style="font-size: 3.5rem; opacity: 0.3; margin-bottom: 1rem;"></i>
+                <p>Your cart is empty</p>
+            </div>`;
+    } else {
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
 
-        const html = `
-            <div class="cart-item">
-                <div class="cart-item-info">
-                    <h5>${item.name}</h5>
-                    <p>₱${item.price} × ${item.quantity}</p>
+            cartItemsContainer.innerHTML += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h5>${item.name}</h5>
+                        <p>₱${item.price} × ${item.quantity}</p>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn minus" data-index="${index}">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="qty-btn plus" data-index="${index}">+</button>
+                    </div>
+                    <div style="text-align:right; min-width: 80px;">
+                        <strong>₱${itemTotal}</strong><br>
+                        <small class="remove-item" data-index="${index}" style="color:#e74c3c; cursor:pointer;">Remove</small>
+                    </div>
                 </div>
-                <div class="quantity-controls">
-                    <button class="qty-btn minus" data-index="${index}">-</button>
-                    <span>${item.quantity}</span>
-                    <button class="qty-btn plus" data-index="${index}">+</button>
-                </div>
-                <div style="text-align:right;">
-                    <strong>₱${itemTotal}</strong><br>
-                    <small class="remove-item" data-index="${index}">Remove</small>
-                </div>
-            </div>
-        `;
-        cartItemsContainer.innerHTML += html;
-    });
+            `;
+        });
+    }
 
     if (cartTotalEl) cartTotalEl.textContent = `₱${total}`;
-    if (cartCountEl) cartCountEl.textContent = cart.length;
-    if (cartIconCountEl) cartIconCountEl.textContent = cart.length;
+    if (cartIconCount) cartIconCount.textContent = cart.length;
 }
 
-// Event Delegation for all cart actions
+// Event Delegation for Add to Order, Quantity, Remove
 document.addEventListener('click', function(e) {
     // Add to Order buttons
     if (e.target.classList.contains('add-to-order')) {
@@ -174,7 +178,7 @@ document.addEventListener('click', function(e) {
     // Quantity buttons
     if (e.target.classList.contains('qty-btn')) {
         const index = parseInt(e.target.dataset.index);
-        if (isNaN(index) || !cart[index]) return;
+        if (isNaN(index)) return;
 
         if (e.target.classList.contains('plus')) {
             cart[index].quantity += 1;
@@ -188,44 +192,19 @@ document.addEventListener('click', function(e) {
     // Remove item
     if (e.target.classList.contains('remove-item')) {
         const index = parseInt(e.target.dataset.index);
-        if (!isNaN(index) && cart[index]) {
+        if (!isNaN(index)) {
             cart.splice(index, 1);
             updateCartUI();
         }
     }
 });
 
-// Notification
-function showNotification(message) {
-    const notif = document.createElement('div');
-    notif.style.cssText = `
-        position: fixed;
-        bottom: 100px;
-        right: 30px;
-        background: var(--primary);
-        color: white;
-        padding: 15px 20px;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        z-index: 10003;
-        font-weight: 500;
-    `;
-    notif.textContent = message;
-    document.body.appendChild(notif);
-
-    setTimeout(() => {
-        notif.style.transition = 'opacity 0.4s';
-        notif.style.opacity = '0';
-        setTimeout(() => notif.remove(), 400);
-    }, 2500);
-}
-
 // Checkout
 if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
         if (cart.length > 0) {
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            alert(`✅ Order placed successfully!\n\nTotal: ₱${total}\n\nThank you for choosing Krav Cafe Tanauan! ☕`);
+            alert(`✅ Order placed successfully!\nTotal: ₱${total}\n\nThank you for choosing Krav Cafe! ☕`);
             cart = [];
             updateCartUI();
             closeCart();
@@ -234,6 +213,31 @@ if (checkoutBtn) {
         }
     });
 }
+
+// Notification
+function showNotification(message) {
+    const notif = document.createElement('div');
+    notif.style.cssText = `
+        position: fixed; bottom: 100px; right: 30px; 
+        background: var(--primary); color: white; 
+        padding: 15px 22px; border-radius: 12px; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25); z-index: 10003;
+    `;
+    notif.textContent = message;
+    document.body.appendChild(notif);
+
+    setTimeout(() => {
+        notif.style.transition = 'all 0.4s';
+        notif.style.opacity = '0';
+        notif.style.transform = 'translateY(20px)';
+        setTimeout(() => notif.remove(), 500);
+    }, 2500);
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartUI();
+});
 
 // ==================== CONTACT FORM ====================
 const contactForm = document.querySelector('.contact-form');

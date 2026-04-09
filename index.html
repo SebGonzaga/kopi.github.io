@@ -438,10 +438,35 @@
 
 
 <!-- Cart Icon in Navbar (add this inside .nav-container, after the hamburger) -->
-<div class="cart-icon" id="cartIcon">
-    <i class="fas fa-shopping-cart"></i>
-    <span id="cartIconCount" class="cart-icon-count">0</span>
+<!-- MINI CART -->
+<div id="miniCart" class="mini-cart">
+    <div class="mini-cart-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <i class="fas fa-shopping-basket"></i>
+            <h3>Your Order</h3>
+        </div>
+        <button id="closeCartBtn" class="close-cart">&times;</button>
+    </div>
+
+    <div id="cartItems" class="mini-cart-items"></div>
+
+    <div class="mini-cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <strong id="cartTotal">₱0</strong>
+        </div>
+        <button id="checkoutBtn" class="btn btn-primary" style="width: 100%; padding: 15px 20px; font-size: 1.1rem;">
+            Confirm Order <i class="fas fa-check-circle"></i>
+        </button>
+    </div>
 </div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
     <script src="script.js"></script>
 </body>
+</html>
+    <script src="script.js"></script>
+</body>
+
 </html>
